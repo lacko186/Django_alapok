@@ -254,7 +254,7 @@ urlpatterns = [
 
 http://127.0.0.1:8000/elsoapp/
 <img src="output1.PNG" alt="regisztrációs form">
+<b><i>kattintás után</i></b>
 <img src="output2.PNG" alt="Sikeres regisztráció">
-
 http://127.0.0.1:8000/admin/elsoapp/felhasznalok/
 <img src="output3.PNG" alt="Adatbázis hozzáadva">
