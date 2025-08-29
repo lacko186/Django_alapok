@@ -145,3 +145,11 @@ python manage.py runserver
 <img src="sikeres.PNG" alt="sikeres regisztráció">
 <b>Rákattintva tudjuk szerkeszteni</b>
 <img src="edit.PNG" alt="szerkesztes">
+
+
+<h3></h3>
+<img src="urls.PNG" alt="urls.py">
+<img src="views.PNG" alt="urls.py">
+<img src="forms.PNG" alt="urls.py">
+<img src="templatesindex.PNG" alt="urls.py">
+<img src="elsoappurls.PNG" alt="elsőapp urls">

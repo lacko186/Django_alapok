@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regisztráció</title>
+</head>
+<body>
+    
+    <h1>Regisztráció</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">bevitel</button>
+
+    </form>
+
+    <ul>
+        {% for felhasznalo in felhasznalok %}
+            <li>{{ felhasznalo.felhasznalonev }} - {{felhasznalo.emailcim}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
