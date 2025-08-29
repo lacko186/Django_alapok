@@ -249,3 +249,12 @@ urlpatterns = [
 </body>
 </html>
 ```
+
+<h3>Ha jól dolgoztunk:</h3>
+
+http://127.0.0.1:8000/elsoapp/
+<img src="output1.PNG" alt="regisztrációs form">
+<img src="output2.PNG" alt="Sikeres regisztráció">
+
+http://127.0.0.1:8000/admin/elsoapp/felhasznalok/
+<img src="output3.PNG" alt="Adatbázis hozzáadva">
