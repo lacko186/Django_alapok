@@ -147,9 +147,105 @@ python manage.py runserver
 <img src="edit.PNG" alt="szerkesztes">
 
 
-<h3></h3>
-<img src="urls.PNG" alt="urls.py">
-<img src="views.PNG" alt="urls.py">
+<h3>Frontend összekötés</h3>
+
 <img src="forms.PNG" alt="urls.py">
-<img src="templatesindex.PNG" alt="urls.py">
+<p><i>átadjuk a python adatbázisunk felépítését</i></p>
+
+```python
+
+from django import forms
+from .models import Felhasznalok
+
+class FelhasznaloForm(forms.ModelForm):
+    class Meta:
+        model = Felhasznalok
+        fields = '__all__'
+
+```
+
+<img src="views.PNG" alt="urls.py">
+<p><i>http POST metódus segítségével az új felhasználók mentése renderelés a struktúra alapján</i></p>
+
+```python
+
+from django.shortcuts import render
+from .forms import FelhasznaloForm
+from .models import Felhasznalok
+
+def index(request):
+    if request.method == 'POST':
+        form = FelhasznaloForm(request.POST)
+        if form.is_valid():
+            form.save()
+            form = FelhasznaloForm()  
+    else:
+        form = FelhasznaloForm()
+    
+    felhasznalok = Felhasznalok.objects.all()
+    return render(request, 'index.html', {'form': form, 'felhasznalok': felhasznalok})
+
+```
+
 <img src="elsoappurls.PNG" alt="elsőapp urls">
+<p><i>először az elso/urls.py-ban megadjuk hogy melyik elemet kell keresnie. Az elsoapp-nak az urls.py-eleméét  </i></p>
+
+```python
+
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('elsoapp/', include('elsoapp.urls')),
+]
+
+```
+
+<img src="urls.PNG" alt="urls.py">
+<p><i>az elsoapp/urls-ben megadjuk, hogy az elsoapp/views-nak az index függvényét keresse</i></p>
+
+```python
+
+from django.urls import path
+from django.urls import include
+from . import views
+
+urlpatterns = [
+    path("", views.index, name="index"),
+]
+
+
+```
+
+<img src="templatesindex.PNG" alt="urls.py">
+<p><i>html template az adatbázis adatainak kiirásához, ezt az elsoapp mappán belül kell létrehozni Ttemplates mappa és ezen belül index.html</i></p>
+
+```html
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regisztráció</title>
+</head>
+<body>
+    
+    <h1>Regisztráció</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">bevitel</button>
+
+    </form>
+
+    <ul>
+        {% for felhasznalo in felhasznalok %}
+            <li>{{ felhasznalo.felhasznalonev }} - {{felhasznalo.emailcim}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+```
