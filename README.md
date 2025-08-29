@@ -112,7 +112,8 @@ migráláshoz elsoapp hozzáadás settings.py-ban:
 
 admin.py-ban hozzáadjuk a felhasználók modelt:
 
-<img scr="adminhozzaad.PNG" alt="felhasználók hozzáadása">
+
+<img src="adminh.PNG" alt="felhasználók hozzáadása">
 
 
 ```python
